@@ -72,6 +72,20 @@ def show_heatmap(mat, pitches, full=False):
     seaborn.heatmap(df, cmap='Blues')
     plt.show()
 
+def show_3d(mat, pitches, full=False):
+    if full:
+        p_list = sorted(list(set(pitches)))
+        x = np.array(p_list)
+        y = np.array(p_list)
+    else:
+        x = np.arange(0, 7, 1)
+        y = np.arange(0, 7, 1)
+    X, Y = np.meshgrid(x, y)
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    ax.plot_surface(X, Y, mat, cmap=plt.cm.jet, 
+                    rstride=1, cstride=1, linewidth=0)
+    plt.show()
 
 if __name__ == "__main__":
     # load pickle
@@ -89,6 +103,9 @@ if __name__ == "__main__":
 
     # t -> t+1  Matrix
     mat = make_mat(times, pitches)
-    full_mat = make_mat(times,pitches, True)
     show_heatmap(mat, pitches)
+
+    full_mat = make_mat(times,pitches, True)
     show_heatmap(full_mat, pitches, True)
+
+    show_3d(full_mat, pitches, True)
