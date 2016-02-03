@@ -6,7 +6,7 @@ import numpy as np
 import seaborn
 import pandas as pd
 import matplotlib.cm as cm
-
+from mpl_toolkits.mplot3d import Axes3D
 
 def pitch(height):
     """ Calculate pitch of given height. """
