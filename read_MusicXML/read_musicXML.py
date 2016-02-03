@@ -34,7 +34,6 @@ def extract_music(soup):
     tmp_duration = 0
     # parse
     for m in soup.find_all("measure"):
-#        m_num = int(m.attrs["number"]) # measure index
         for nb in m.find_all({"note", "backup"}):
             if nb.name == "backup": # 巻き戻し
                 cur_time -= int(nb.duration.string)
